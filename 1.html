@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лаба 5</title>
+  </head>
+  <body>
+    <script>
+      function unique(arr) {
+        let newArr = [...arr];
+        for (let i = 0; i < newArr.length; i++) {
+          for (let j = i + 1; j < newArr.length; j++) {
+            if (newArr[i] === newArr[j]) {
+              newArr.splice(j, 1);
+              j--;
+            }
+          }
+        }
+
+        return newArr;
+      }
+
+      let strings = [
+        "C++",
+        "C#",
+        "C++",
+        "C#",
+        "C",
+        "C++",
+        "JavaScript",
+        "C++",
+        "JavaScript",
+      ];
+
+      alert(unique(strings));
+    </script>
+  </body>
+</html>

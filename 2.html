@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лаба 5</title>
+  </head>
+  <body>
+    <script>
+      function list(session) {
+        let str = "";
+
+        session.forEach(subject => {
+          if(subject.admit){
+            str += subject.name + " ";
+          }
+        });
+
+        session.forEach(subject => {
+          if(!subject.admit){
+            str += subject.name + " ";
+          }
+        });
+
+        console.log(str);
+      }
+
+      function addSubject(session, subject) {
+        for (let i = 0; i < session.length; i++) {
+          if(!session[i].name === subject.name){
+            session[i] = subject;
+          }
+        }
+
+        session.push(subject);
+      }
+
+      function average(session) {
+        let sum = 0;
+        let count = 0;
+
+        session.forEach(subject => {
+          sum += subject.grade;
+          count++;
+        });
+
+        return sum / count;
+      }
+
+      function notAdmitCount(session) {
+        let count = 0;
+        session.forEach(subject => {
+          if(!subject.admit){
+            count++;
+          }
+        });
+
+        return count;
+      }
+
+      function highest(session) {
+        let bestGrade = 0;
+        let bestName = "";
+        session.forEach(subject => {
+          if(subject.grade > bestGrade){
+            bestGrade = subject.grade;
+            bestName = subject.name;
+          }
+        });
+
+        return bestName;
+      }
+
+      function findByGrade(session, grade) {
+        let subjects = [];
+        session.forEach(subject => {
+          if(subject.grade === grade){
+            subjects.push(subject.name);
+          }
+        });
+
+        return subjects;
+      }
+
+      let session = [
+        {
+          name: 'Math',
+          grade: 70,
+          admit: true
+        },
+        {
+          name: 'Physics',
+          grade: 55,
+          admit: false
+        },
+        {
+          name: 'Geography',
+          grade: 90,
+          admit: true
+        },
+      ]
+
+      list(session);
+
+      console.log('Session before add:');
+      console.log([...session]);
+      console.log('Session after history add:');
+      addSubject(session, {name: "History", grade: 70, admit: true});
+      console.log(session);
+
+      console.log('Session average: '+ average(session));
+
+      console.log('Not admited count: '+ notAdmitCount(session));
+
+      console.log('Highest grade subject: '+ highest(session));
+
+      console.log('Subjects by grade 70:');
+      console.log(findByGrade(session, 70));
+
+    </script>
+  </body>
+</html>
